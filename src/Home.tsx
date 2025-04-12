@@ -12,10 +12,28 @@ function Home() {
     const sectionsRef = useRef<(HTMLElement | null)[]>([]);
     const imagesInPositionRef = useRef(false);
     
-    // Scroll to top on initial load
+    // Check for mobile device and skip intro animation if needed
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // Define what counts as a "small screen" - typically 768px or less
+        const isMobileDevice = window.innerWidth <= 768;
+        
+        if (isMobileDevice) {
+            // Skip intro animation on mobile
+            setIntroComplete(true);
+            document.body.style.overflow = ''; // Ensure scrolling is enabled
+        } else {
+            // On desktop, start with standard behavior
+            window.scrollTo(0, 0);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling initially
+        }
     }, []);
+    
+    // Scroll to top on initial load - only needed for desktop now
+    useEffect(() => {
+        if (!introComplete) {
+            window.scrollTo(0, 0);
+        }
+    }, [introComplete]);
     
     // Activate the scroll observer for animation effects
     useScrollObserver();
@@ -55,11 +73,6 @@ function Home() {
         window.addEventListener('wheel', handleWheel, { passive: false });
         window.addEventListener('scroll', handleScroll);
         
-        // Prevent scrolling initially
-        if (!introComplete) {
-            document.body.style.overflow = 'hidden';
-        }
-        
         return () => {
             window.removeEventListener('wheel', handleWheel);
             window.removeEventListener('scroll', handleScroll);
@@ -67,13 +80,13 @@ function Home() {
         };
     }, [introComplete]);
     
-    // Calculate image slide positions based on scroll
+    // Calculate image slide positions based on scroll - modify for mobile
     const slideAmount = Math.min(100, scrollPosition);
     
-    // Left image slides from -100% (hidden) to 0% (visible)
+    // Left image slides from -100% (hidden) to 0% (visible) - or starts at 0 if intro complete
     const leftImagePosition = introComplete ? 0 : -100 + slideAmount;
     
-    // Right image slides from 100% (hidden) to 0% (visible)
+    // Right image slides from 100% (hidden) to 0% (visible) - or starts at 0 if intro complete
     const rightImagePosition = introComplete ? 0 : 100 - slideAmount;
     
     // Effect to complete intro when images are actually in their final positions
