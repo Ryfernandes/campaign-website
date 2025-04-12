@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import './Home.css';
 import { useScrollObserver } from './ScrollObserver';
+import ryanImage from './assets/images/ryan-fernandes.jpg';
+import reyanshImage from './assets/images/reyansh-bahl.jpg';
 
 function Home() {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -156,8 +158,8 @@ function Home() {
                         style={{ transform: `translateX(${leftImagePosition}%)` }}
                     >
                         <img 
-                            src="/images/ryan-fernandes.jpg" 
-                            alt="Candidate 1" 
+                            src={ryanImage}
+                            alt="Ryan Fernandes" 
                             onLoad={handleImageLoad}
                         />
                     </div>
@@ -166,8 +168,8 @@ function Home() {
                         style={{ transform: `translateX(${rightImagePosition}%)` }}
                     >
                         <img 
-                            src="/images/reyansh-bahl.jpg" 
-                            alt="Candidate 2" 
+                            src={reyanshImage}
+                            alt="Reyansh Bahl" 
                             onLoad={handleImageLoad}
                         />
                     </div>
@@ -278,7 +280,7 @@ function Home() {
                     <div className="candidate-profiles">
                         <div className="candidate-profile">
                             <div className="candidate-image">
-                                <img src="/images/ryan-fernandes.jpg" alt="Ryan Fernandes" />
+                                <img src={ryanImage} alt="Ryan Fernandes" />
                             </div>
                             <h3>Ryan Fernandes</h3>
                             <div className="candidate-info">Natick, Massachusetts • Trumbull</div>
@@ -288,7 +290,7 @@ function Home() {
                         </div>
                         <div className="candidate-profile">
                             <div className="candidate-image">
-                                <img src="/images/reyansh-bahl.jpg" alt="Reyansh Bahl" />
+                                <img src={reyanshImage} alt="Reyansh Bahl" />
                             </div>
                             <h3>Reyansh Bahl</h3>
                             <div className="candidate-info">Cary, North Carolina • Benjamin Franklin</div>
