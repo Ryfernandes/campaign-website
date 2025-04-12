@@ -30,9 +30,7 @@ function Home() {
     
     // Scroll to top on initial load - only needed for desktop now
     useEffect(() => {
-        if (!introComplete) {
-            window.scrollTo(0, 0);
-        }
+        window.scrollTo(0, 0);
     }, [introComplete]);
     
     // Activate the scroll observer for animation effects
