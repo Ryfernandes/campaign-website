@@ -348,7 +348,7 @@ function Home() {
             {/* Floating Vote Button - only shows after intro animation */}
             {introComplete && (
                 <a 
-                    href="https://yalecomputersociety.org/" 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSe5U9Xrnh3a_SUv6nlKDLr9nUn7ZCAfMw5O29pRwcqe-fDY0g/viewform" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="vote-button"
